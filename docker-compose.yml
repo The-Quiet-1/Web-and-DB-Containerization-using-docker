@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    container_name: video-editing-web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASS: password123
+      DB_NAME: video_booking
+
+  db:
+    image: postgres:15
+    container_name: video-editing-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: video_booking
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+

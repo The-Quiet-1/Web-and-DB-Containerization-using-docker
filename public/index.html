@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Editing Booking</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Table minimal styling (does NOT modify style.css file) -->
+  <style>
+    table {
+      width: 100%;
+      margin-top: 30px;
+      border-collapse: collapse;
+      background: #1b1b1b;
+      color: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #333;
+      text-align: left;
+    }
+    th {
+      background: #ff0077;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🎬 Book Your Video Editing</h1>
+    <p>Professional video editing services at your fingertips!</p>
+
+    <form id="bookingForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+
+      <select id="packageType">
+        <option value="Basic">Basic Edit</option>
+        <option value="Advanced">Advanced Edit</option>
+        <option value="Premium">Premium Cinematic Edit</option>
+      </select>
+
+      <textarea id="details" placeholder="Tell us about your video..." required></textarea>
+
+      <button type="submit">Submit Booking</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+    <!-- NEW: Table to show submitted data -->
+    <h2 style="margin-top: 40px; color:#ff0077; text-align:center;">📋 Submissions</h2>
+
+    <table id="bookingTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Package</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- data will auto-append here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Auto-update table + auto-clear fields WITHOUT modifying script.js -->
+  <script>
+    document.getElementById("bookingForm").addEventListener("submit", function () {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const pack = document.getElementById("packageType").value;
+      const details = document.getElementById("details").value;
+
+      const table = document.getElementById("bookingTable").querySelector("tbody");
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${pack}</td>
+        <td>${details}</td>
+      `;
+      table.appendChild(row);
+
+      // Auto-clear fields
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("packageType").value = "Basic";
+      document.getElementById("details").value = "";
+    });
+  </script>
+
+</body>
+</html>
+

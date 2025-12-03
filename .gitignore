@@ -1,0 +1,13 @@
+.env
+*.pem
+*.key
+*.crt
+__pycache__/
+.env.local
+aws_credentials
+*.log
+*.db
+node_modules/
+.vscode/
+.idea/
+
