@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    image: manav1122/video-edit-web:latest
     container_name: video-editing-web
     ports:
       - "3000:3000"
